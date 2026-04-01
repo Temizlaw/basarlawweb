@@ -4,15 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Temiz Law Firm | Hukuk Bürosu</title>
-  
-  <link rel="icon" type="image/png" href="favicon.png" />
-  
-  <meta property="og:title" content="Temiz Law Firm | Uluslararası Hukuk Bürosu" />
-  <meta property="og:description" content="Güvenilir, Profesyonel ve Uluslararası Hukuki Danışmanlık. İstanbul merkezli hukuk büromuzla tanışın." />
-  <meta property="og:image" content="https://temizlaw.com/temiz-logo.png" />
-  <meta property="og:url" content="https://temizlaw.com" />
-  <meta property="og:type" content="website" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -20,7 +11,7 @@
     :root {
       --navy: #1a1a1a;
       --navy-light: #2c2c2c;
-      --gold: #2d6a4a; 
+      --gold: #2d6a4a;
       --gold-light: #4a9e73;
       --cream: #f6f4f0;
       --white: #ffffff;
@@ -43,12 +34,12 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.6rem 4rem;
+      padding: 1.2rem 4rem;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-      transition: all .3s ease;
+      transition: all .3s;
     }
 
     .nav-logo {
@@ -60,11 +51,14 @@
       text-decoration: none;
       display: flex; align-items: center; gap: 0.6rem;
     }
-    .nav-logo img {
-      height: 75px;
-      width: auto;
-      transition: height 0.3s ease; 
+    .nav-logo .logo-mark {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--gold-light);
     }
+    .nav-logo span { color: var(--gold-light); }
 
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
@@ -87,22 +81,30 @@
     .nav-links a:hover { color: var(--gold-light); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
+
+
     /* ── HERO ─────────────────────────────── */
     #hero {
       height: 100vh;
       position: relative;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
-      background: linear-gradient(135deg, #0a150a 0%, #111111 40%, #0f1a0f 70%, #0a0a0a 100%);
     }
 
     .hero-video {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.35; 
+      opacity: 0.35;
     }
 
+    /* Fallback gradient when no video */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #0a150a 0%, #111111 40%, #0f1a0f 70%, #0a0a0a 100%);
+    }
+
+    /* Animated lines overlay */
     .hero-lines {
       position: absolute; inset: 0;
       background-image:
@@ -216,14 +218,18 @@
       position: relative;
       overflow: hidden;
     }
-    #quotes::before, #quotes::after {
+    #quotes::before {
       content: '';
-      position: absolute; left: 0; right: 0;
+      position: absolute; top: 0; left: 0; right: 0;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
-    #quotes::before { top: 0; }
-    #quotes::after { bottom: 0; }
+    #quotes::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
 
     .quotes-inner {
       max-width: 900px; margin: 0 auto;
@@ -232,7 +238,7 @@
 
     .quote-display {
       position: relative;
-      min-height: 220px;
+      min-height: 180px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
 
@@ -240,9 +246,8 @@
       position: absolute; inset: 0;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       opacity: 0; transition: opacity 0.8s ease;
-      pointer-events: none;
     }
-    .quote-item.active { opacity: 1; position: relative; pointer-events: auto; }
+    .quote-item.active { opacity: 1; position: relative; }
 
     .quote-mark {
       font-family: 'Cormorant Garamond', serif;
@@ -283,93 +288,405 @@
     }
     .quote-dot.active { background: var(--gold-light); }
 
-    /* ── DİĞER BÖLÜMLERİN CSS'LERİ ──────────── */
-    #hakkimizda { background: var(--cream); padding: 7rem 4rem; }
-    .section-label { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--navy); line-height: 1.15; margin-bottom: 2.5rem; }
-    .section-title em { font-style: italic; color: var(--gold); }
-    .about-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .about-text p { font-size: 0.95rem; line-height: 1.9; color: #3a3a3a; margin-bottom: 1.2rem; font-weight: 300; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-    .stat-item { padding: 1.5rem; border: 1px solid var(--gray-light); border-top: 2px solid var(--gold); overflow: hidden; }
-    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--navy); line-height: 1; }
-    .stat-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-top: 0.4rem; }
-    
-    .about-visual { position: relative; }
-    .about-img-wrapper { position: relative; display: block; }
-    .about-img-wrapper img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; position: relative; z-index: 1; border-radius: 4px; }
-    .about-accent { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 60%; height: 60%; border: 2px solid var(--gold); pointer-events: none; z-index: 2; }
-    .about-accent-2 { position: absolute; top: -1.5rem; left: -1.5rem; width: 40%; height: 30%; border: 1px solid rgba(74,158,115,0.3); pointer-events: none; z-index: 2; }
+    /* ── HAKKIMIZDA ──────────────────────── */
+    #hakkimizda {
+      background: var(--cream);
+      padding: 7rem 4rem;
+    }
 
-    #faaliyetler { background: #f0ece2; padding: 7rem 4rem; }
-    .section-header { max-width: 1200px; margin: 0 auto 4rem; text-align: center; }
-    .practice-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-    .practice-card { padding: 2.5rem 2rem; border: 1px solid var(--gray-light); border-right: none; border-bottom: none; background: var(--white); cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .about-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #3a3a3a;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat-item {
+      padding: 1.5rem;
+      border: 1px solid var(--gray-light);
+      border-top: 2px solid var(--gold);
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 0.4rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrapper {
+      position: relative;
+    }
+    .about-img-wrapper img {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover;
+      filter: sepia(20%) brightness(0.9);
+    }
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3259 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-img-placeholder::before {
+      content: 'TEMIZ\A LAW FIRM';
+      white-space: pre;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: rgba(196,168,90,0.4);
+      text-align: center;
+      letter-spacing: 0.2em;
+    }
+    .about-accent {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 60%; height: 60%;
+      border: 2px solid var(--gold);
+      pointer-events: none;
+    }
+    .about-accent-2 {
+      position: absolute;
+      top: -1.5rem; left: -1.5rem;
+      width: 40%; height: 30%;
+      border: 1px solid rgba(74,158,115,0.3);
+      pointer-events: none;
+    }
+
+    /* ── FAALIYET ALANLARIMIZ ──────────── */
+    #faaliyetler {
+      background: #f0ece2;
+      padding: 7rem 4rem;
+    }
+
+    .section-header {
+      max-width: 1200px; margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .practice-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .practice-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--gray-light);
+      border-right: none;
+      border-bottom: none;
+      background: var(--white);
+      cursor: pointer;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
     .practice-card:nth-child(3n) { border-right: 1px solid var(--gray-light); }
     .practice-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--gray-light); }
-    .practice-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform .3s; }
+    .practice-card:nth-last-child(1),
+    .practice-card:nth-last-child(2),
+    .practice-card:nth-last-child(3) { border-bottom: 1px solid var(--gray-light); }
+
+    .practice-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0); transition: transform .3s;
+    }
     .practice-card:hover { background: #1a1a1a; }
     .practice-card:hover::before { transform: scaleX(1); }
-    .practice-card:hover .pc-title, .practice-card:hover .pc-num { color: var(--white); }
+    .practice-card:hover .pc-title,
+    .practice-card:hover .pc-num { color: var(--white); }
     .practice-card:hover .pc-text { color: rgba(255,255,255,0.6); }
     .practice-card:hover .pc-icon { color: var(--gold-light); }
-    .pc-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--gold); margin-bottom: 1.2rem; transition: color .3s; }
-    .pc-icon { font-size: 1.8rem; margin-bottom: 1rem; color: var(--navy); transition: color .3s; }
-    .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--navy); margin-bottom: 0.8rem; transition: color .3s; }
-    .pc-text { font-size: 0.82rem; line-height: 1.7; color: var(--gray); font-weight: 300; transition: color .3s; }
 
-    #hizmetler { background: #1a1a1a; padding: 7rem 4rem; }
+    .pc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      transition: color .3s;
+    }
+    .pc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--navy);
+      transition: color .3s;
+    }
+    .pc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+      transition: color .3s;
+    }
+    .pc-text {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--gray);
+      font-weight: 300;
+      transition: color .3s;
+    }
+
+    /* ── HİZMETLERİMİZ (TAB) ────────────── */
+    #hizmetler {
+      background: #1a1a1a;
+      padding: 7rem 4rem;
+    }
     #hizmetler .section-label { color: var(--gold-light); }
     #hizmetler .section-title { color: var(--white); }
+
     .services-inner { max-width: 1200px; margin: 0 auto; }
-    .services-tabs { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(74,158,115,0.25); margin-bottom: 3rem; }
-    .tab-btn { padding: 0.9rem 1.5rem; background: none; border: none; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); cursor: pointer; border-bottom: 2px solid transparent; transition: all .25s; margin-bottom: -1px; }
-    .tab-btn.active, .tab-btn:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+
+    .services-tabs {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(74,158,115,0.25);
+      margin-bottom: 3rem;
+    }
+    .tab-btn {
+      padding: 0.9rem 1.5rem;
+      background: none; border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .25s;
+      margin-bottom: -1px;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-light);
+    }
+
     .tab-content { display: none; animation: fadeIn .4s ease; }
     .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .service-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--white); margin-bottom: 1.5rem; }
-    .service-body p { font-size: 0.9rem; line-height: 1.9; color: rgba(255,255,255,0.6); font-weight: 300; }
-    .service-highlights { padding: 2rem; border: 1px solid rgba(74,158,115,0.25); border-top: 2px solid var(--gold); }
-    .service-highlights h4 { font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; }
-    .service-highlights li { list-style: none; font-size: 0.85rem; color: rgba(255,255,255,0.6); padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-weight: 300; display: flex; align-items: center; gap: 0.7rem; }
-    .service-highlights li::before { content: '—'; color: var(--gold); font-size: 0.7rem; }
+
+    .service-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .service-body p {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+    }
+
+    .service-highlights {
+      padding: 2rem;
+      border: 1px solid rgba(74,158,115,0.25);
+      border-top: 2px solid var(--gold);
+    }
+    .service-highlights h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+    }
+    .service-highlights li {
+      list-style: none;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-weight: 300;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .service-highlights li::before {
+      content: '—';
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
     .service-highlights li:last-child { border-bottom: none; }
 
-    #iletisim { background: var(--cream); padding: 7rem 4rem; }
-    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
-    .contact-detail { margin-bottom: 2.5rem; }
-    .contact-detail-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-    .contact-detail-value { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); font-weight: 300; }
+    /* ── İLETİŞİM ──────────────────────── */
+    #iletisim {
+      background: var(--cream);
+      padding: 7rem 4rem;
+    }
+
+    .contact-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    }
+
+    .contact-info {}
+    .contact-detail {
+      margin-bottom: 2.5rem;
+    }
+    .contact-detail-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .contact-detail-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: 300;
+    }
     .contact-detail-value a { color: var(--navy); text-decoration: none; }
     .contact-detail-value a:hover { color: var(--gold); }
-    
+
+    .contact-form {}
     .form-row { margin-bottom: 1.2rem; }
-    .form-row label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.4rem; }
-    .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 0.85rem 1rem; background: var(--white); border: 1px solid var(--gray-light); font-family: 'Jost', sans-serif; font-size: 0.88rem; color: var(--navy); font-weight: 300; outline: none; transition: border-color .2s; appearance: none; }
-    .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color: var(--gold); }
+    .form-row label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.4rem;
+    }
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--gray-light);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--navy);
+      font-weight: 300;
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus {
+      border-color: var(--gold);
+    }
     .form-row textarea { resize: vertical; min-height: 120px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-submit { display: inline-flex; align-items: center; gap: 0.7rem; padding: 1rem 2.5rem; background: #1a1a1a; color: var(--white); font-family: 'Jost', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--navy); cursor: pointer; transition: all .25s; }
+
+    .form-submit {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      padding: 1rem 2.5rem;
+      background: #1a1a1a;
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--navy);
+      cursor: pointer;
+      transition: all .25s;
+    }
     .form-submit:hover { background: var(--gold); border-color: var(--gold); }
 
-    /* Footer padding ve logo boyutu optimize edildi */
-    footer { background: #111111; padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(74,158,115,0.2); }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); }
-    .footer-logo img { height: 75px; width: auto; filter: brightness(0) invert(0.6); } 
-    .footer-copy { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      background: #111111;
+      padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid rgba(74,158,115,0.2);
+    }
 
-    .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-logo span { color: var(--gold-light); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-langs {
+      display: flex; gap: 1rem;
+    }
+    .footer-langs a {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+    .footer-langs a:hover { color: var(--gold-light); }
+
+    /* ── SECTION DIVIDER ─────────────────── */
+    .divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
     .divider-center { margin: 1.5rem auto; }
 
     /* ── SCROLL ANIMATIONS ──────────────── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ─────────────────────── */
     @media (max-width: 900px) {
-      nav { padding: 0.5rem 2rem; }
+      nav { padding: 1rem 2rem; }
       .nav-links { display: none; }
+
       #hero .hero-title { font-size: 3rem; }
       #hakkimizda, #faaliyetler, #hizmetler, #iletisim { padding: 5rem 2rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -380,21 +697,23 @@
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       footer { flex-direction: column; text-align: center; padding: 2rem; }
     }
+
     @media (max-width: 600px) {
       .practice-grid { grid-template-columns: 1fr; }
       .practice-card { border-right: 1px solid var(--gray-light) !important; }
       .about-stats { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
       #quotes { padding: 4rem 2rem; }
-      #iletisim .contact-detail:last-child .contact-detail-value { font-size: 0.8rem; }
     }
+
+
   </style>
 </head>
 <body>
 
 <nav id="main-nav">
   <a href="#" class="nav-logo">
-    <img src="temiz-logo.png" alt="Temiz Law Firm" />
+    <img src="temiz-logo.png" alt="Temiz Law Firm" style="height:44px; width:auto;" />
   </a>
   <ul class="nav-links">
     <li><a href="#hakkimizda">Hakkımızda</a></li>
@@ -402,15 +721,27 @@
     <li><a href="#hizmetler">Hizmetler</a></li>
     <li><a href="#iletisim">İletişim</a></li>
   </ul>
+
 </nav>
 
+
+
 <section id="hero">
-  <video class="hero-video" id="hero-video" autoplay muted loop playsinline>
+  <div class="hero-bg"></div>
+
+  <video
+    id="hero-video"
+    autoplay muted loop playsinline
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;"
+  >
     <source src="istanbul.mp4" type="video/mp4" />
     <source src="istanbul.webm" type="video/webm" />
   </video>
 
   <div class="hero-lines"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:1;">
+    <img src="temiz-logo.png" alt="" style="width:min(400px,60vw); opacity:0.04; filter:brightness(10);" />
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">İstanbul · Uluslararası Hukuk Bürosu</div>
@@ -471,7 +802,7 @@
           <div class="stat-label">Hukuk Alanı</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" style="font-size: clamp(1.4rem, 2vw, 2rem); white-space: nowrap;">TR · DE · RU · EN</div>
+          <div class="stat-number">TR · DE · RU · EN</div>
           <div class="stat-label">Uluslararası Erişim</div>
         </div>
         <div class="stat-item">
@@ -482,7 +813,7 @@
     </div>
     <div class="about-visual reveal">
       <div class="about-img-wrapper">
-        <img src="ali-basar.png" alt="Av. Ali Başar Temiz" />
+        <div class="about-img-placeholder"></div>
         <div class="about-accent"></div>
         <div class="about-accent-2"></div>
       </div>
@@ -591,6 +922,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-bilisim" class="tab-content">
       <div class="service-body">
         <h3>Bilişim Hukuku & KVKK</h3>
@@ -607,6 +939,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-ticaret" class="tab-content">
       <div class="service-body">
         <h3>Ticaret Hukuku</h3>
@@ -624,6 +957,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-is" class="tab-content">
       <div class="service-body">
         <h3>İş Hukuku</h3>
@@ -640,6 +974,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-idare" class="tab-content">
       <div class="service-body">
         <h3>İdare Hukuku</h3>
@@ -656,6 +991,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-aile" class="tab-content">
       <div class="service-body">
         <h3>Aile Hukuku</h3>
@@ -672,6 +1008,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-gayrimenkul" class="tab-content">
       <div class="service-body">
         <h3>Gayrimenkul & Kira Hukuku</h3>
@@ -688,6 +1025,7 @@
         </ul>
       </div>
     </div>
+
     <div id="tab-vergi" class="tab-content">
       <div class="service-body">
         <h3>Vergi Hukuku</h3>
@@ -715,7 +1053,7 @@
       <div class="divider"></div>
       <div class="contact-detail">
         <div class="contact-detail-label">Adres</div>
-        <div class="contact-detail-value">Atatürk Mah. Sedef Cad. Ata Blokları 3/4 K:6,<br>D:193, 34722 İstanbul</div>
+        <div class="contact-detail-value">Atatürk Mah. Sedef Cad. Ata Blokları 3/4 K:6,<br>D:193, 3472 İstanbul</div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-label">Telefon</div>
@@ -727,7 +1065,7 @@
       </div>
       <div class="contact-detail">
         <div class="contact-detail-label">Hizmet Dilleri</div>
-        <div class="contact-detail-value">Türkçe · English · Deutsch · Русский</div>
+        <div class="contact-detail-value" style="font-size:1rem;">Türkçe · English · Deutsch · Русский</div>
       </div>
     </div>
     
@@ -780,11 +1118,18 @@
 </section>
 
 <footer>
-  <div class="footer-logo"><img src="temiz-logo.png" alt="Temiz Law Firm" /></div>
+  <div class="footer-logo"><img src="temiz-logo.png" alt="Temiz Law Firm" style="height:36px; width:auto; filter: brightness(0) invert(0.6);" /></div>
   <div class="footer-copy">©2025 Temiz Law · Tüm hakları saklıdır.</div>
+  <div class="footer-langs">
+    <a href="#">TR</a>
+    <a href="#">EN</a>
+    <a href="#">DE</a>
+    <a href="#">RU</a>
+  </div>
 </footer>
 
 <script>
+  // ── Quotes rotator ──
   let currentQuote = 0;
   const totalQuotes = 3;
 
@@ -802,6 +1147,7 @@
     goToQuote((currentQuote + 1) % totalQuotes);
   }, 5000);
 
+  // ── Tab switching ──
   function switchTab(name) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -809,6 +1155,7 @@
     event.target.classList.add('active');
   }
 
+  // ── Scroll reveal ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -817,19 +1164,21 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Menü animasyonları logo boyutuna ve dar padding'e uyarlandı
+  // ── Nav scroll effect (targets only the main nav) ──
   const mainNav = document.getElementById('main-nav');
-  const navLogoImg = document.querySelector('.nav-logo img');
-  
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
-      mainNav.style.padding = '0.3rem 4rem';
-      if(navLogoImg) navLogoImg.style.height = '50px';
+      mainNav.style.padding = '0.8rem 4rem';
     } else {
-      mainNav.style.padding = '0.6rem 4rem';
-      if(navLogoImg) navLogoImg.style.height = '75px';
+      mainNav.style.padding = '1.2rem 4rem';
     }
   });
+
+  // ── Hero video fade-in ──
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    heroVideo.style.opacity = 0.35;
+  }
 </script>
 </body>
 </html>
